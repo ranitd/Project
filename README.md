@@ -1,3 +1,13 @@
+## how to run our code
+download processing from here: https://processing.org/download/
+extract the tar folder to your computer
+in processing-3.5.4 folfer you will have processing application - open it 
+create new folder, and download there the processing code from githab.
+
+download your prefered python editor, for example https://www.jetbrains.com/pycharm/download/#section=windows
+open a new project and add the python code from github.
+in the python code, we want to create a txt file at the processing folder you created, so copy the path of the processing folder and put on line
+
 Software that simulates the behaviour of systems written in the Beacon Calculus. bcs is under development by the Boemo Group at the University of Cambridge.
 
 ## Downloading and Compiling bcs
