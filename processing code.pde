@@ -75,7 +75,7 @@ v.saveFrame();
     spheres.add(new SphereLoc(x,y,id,247,242,85,pid,z));
     }
     else if(id==2){
-    spheres.add(new SphereLoc(x,y,id,28,131,53,pid,z));S
+    spheres.add(new SphereLoc(x,y,id,28,131,53,pid,z));
     }
     else if(id==3){
     spheres.add(new SphereLoc(x,y,id,232,86,70,pid,z));
