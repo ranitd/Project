@@ -1,97 +1,95 @@
-import shapes3d.*; //<>//
+import shapes3d.*;
 import shapes3d.contour.*;
 import shapes3d.org.apache.commons.math.*;
 import shapes3d.org.apache.commons.math.geometry.*;
 import shapes3d.path.*;
 import shapes3d.utils.*;
-import com.hamoid.*;
 
 String[] lines;
 ArrayList<SphereLoc > spheres;
 HashMap hm = new HashMap(); 
 int index = 0;
-VideoExport v;
 int x,y,id,pid,i=0;
-int i1=0,i2=0,i0=0;
 int z=25;
 int r,g,b;
 
-void setup() {
-    background(255);
+void setup() 
+{
+  background(255);
   size(1000, 1000,P3D);
   frameRate(50);
   lines = loadStrings("positions1.txt");
   spheres = new ArrayList<SphereLoc>();
   noStroke();
-  v=new VideoExport(this, "myVideo.mp4");
-  v.setFrameRate(50);
-  v.startMovie();
 }
 
-void draw() {
-    lights();
-    if (index < lines.length) {
+void draw() 
+{
+  lights();
+  if (index < lines.length)
+  {
     String[] pieces1 = split(lines[index], '\t');
     index = index + 1;
-     if (pieces1.length == 4) {
+    if (pieces1.length == 4)
+    {
       x = int(pieces1[0]) ;
       y = int(pieces1[1]) ;
       id=int(pieces1[2]);
       pid=int(pieces1[3]);
-     if (!hm.containsKey(pid))
-      {
-        update();
-        hm.put(pid,1);
-      }
-        
-     for (int i = 0; i <spheres.size(); i++) { 
-    if(spheres.get(i).pid==pid)
-    {
-     if(spheres.get(i).id==0||spheres.get(i).id==1||spheres.get(i).id==2||spheres.get(i).id==3) //<>//
-     {
-       print("x: ",spheres.get(i).x=x );
-        print(" y: ",spheres.get(i).y=y );
-        print("\n");
-        spheres.get(i).move();
-         
-     }
-     print("xafter : ",spheres.get(i).x=x );
-        print(" y after: ",spheres.get(i).y=y );
-        print("\n");
+      if (!hm.containsKey(pid))
+       {
+          update();
+          hm.put(pid,1);
+       } 
+       for (int i = 0; i <spheres.size(); i++) 
+       { 
+         if(spheres.get(i).pid==pid)
+         {
+           if(spheres.get(i).id==0||spheres.get(i).id==1||spheres.get(i).id==2||spheres.get(i).id==3)
+           {
+             spheres.get(i).move();
+           }
+         }
+         spheres.get(i).render();
+       }
     }
-    spheres.get(i).render();
-     }
   }
-    }
-v.saveFrame();
 }
 
-  void update(){
-     if(id==0)
-    {
+void update()
+{
+  if(id==0)
+  {
     spheres.add(new SphereLoc(x,y,id,85,211,247,pid,z));
-    }
-    else if(id==1){
-    spheres.add(new SphereLoc(x,y,id,247,242,85,pid,z));
-    }
-    else if(id==2){
-    spheres.add(new SphereLoc(x,y,id,28,131,53,pid,z));
-    }
-    else if(id==3){
-    spheres.add(new SphereLoc(x,y,id,232,86,70,pid,z));
-    }
-    else if(id==4){
-    spheres.add(new SphereLoc(x,y,id,114,233,245,pid,z));
-    }
-    else{
-    spheres.add(new SphereLoc(x,y,id,21,61,203,pid,10));
-    }
   }
-class SphereLoc  {
-  
+   else if(id==1)
+   {
+     spheres.add(new SphereLoc(x,y,id,247,242,85,pid,z));
+   }
+   else if(id==2)
+   {
+     spheres.add(new SphereLoc(x,y,id,28,131,53,pid,z));
+   }
+   else if(id==3)
+   {
+     spheres.add(new SphereLoc(x,y,id,232,86,70,pid,z));
+   }
+   else if(id==4)
+   {
+     spheres.add(new SphereLoc(x,y,id,114,233,245,pid,z));
+   }
+   else
+   {
+     spheres.add(new SphereLoc(x,y,id,21,61,203,pid,10));
+   }
+}
+
+class SphereLoc  
+{  
   float x, y ,z;
   int r,g,b,id,pid;
-  SphereLoc(float x_,float y_,int id_, int r_, int g_, int b_,int pid_, int z_){
+  SphereLoc(float x_,float y_,int id_, int r_, int g_, int b_,int pid_, int z_)
+  {
     x=x_;
     y=y_;
     id=id_;
@@ -101,38 +99,20 @@ class SphereLoc  {
     pid=pid_;
     z=z_;
   }
+  
   void move()
   {
-        if(spheres.get(i).x!=x && spheres.get(i).y!=y)
-        {
-          spheres.get(i).x=x;
-          spheres.get(i).y=y;
-        }
-        /*if(spheres.get(i).id == 4)
-        {
-            //for (int i = 0; i <spheres.size(); i++)
-           // { 
-               // if(spheres.get(i).id == 4)
-               // {
-                    spheres.get(i).z = 5;
-                   // spheres.get(i).r = 21;
-                   // spheres.get(i).g = 61;
-                   // spheres.get(i).b = 203;
-               // }
-           // }
-        }*/
+    if(spheres.get(i).x!=x && spheres.get(i).y!=y)
+    {
+      spheres.get(i).x=x;
+      spheres.get(i).y=y;
+    }
   }
-  void render(){
+  void render()
+  {
     translate(x, y, 0);
     fill(r,g,b);
     sphere(z);
     translate(-x, -y, 0);
-  }
-}
-
-void keyPressed(){
-  if(key=='q'){
-    v.endMovie();
-    exit();
   }
 }
