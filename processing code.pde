@@ -47,9 +47,15 @@ void draw()
          {
            if(spheres.get(i).id==0||spheres.get(i).id==1||spheres.get(i).id==2||spheres.get(i).id==3)
            {
+             print("x: ",spheres.get(i).x=x );
+             print(" y: ",spheres.get(i).y=y );
+             print("\n");
              spheres.get(i).move();
            }
          }
+         print("x: ",spheres.get(i).x=x );
+         print(" y: ",spheres.get(i).y=y );
+         print("\n");
          spheres.get(i).render();
        }
     }
