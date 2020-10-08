@@ -52,10 +52,10 @@ void draw()
              print("\n");
              spheres.get(i).move();
            }
+           print("x: ",spheres.get(i).x=x );
+           print(" y: ",spheres.get(i).y=y );
+           print("\n");
          }
-         print("x: ",spheres.get(i).x=x );
-         print(" y: ",spheres.get(i).y=y );
-         print("\n");
          spheres.get(i).render();
        }
     }
